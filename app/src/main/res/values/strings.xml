@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Mafia</string>
+    <string name="new_game">Новая игра</string>
+    <string name="start_tittle">Новая игра</string>
+    <string name="players_tittle">Выбор игроков</string>
+    <string name="add_new_player">Добавьте игрока</string>
+    <string name="add">Добавить</string>
+    <string name="no_name">Введите имя нового игрока</string>
+    <string name="same_name">Такой игрок уже есть в игре</string>
+    <string name="next">Далее</string>
+    <string name="mafia">Мафия</string>
+    <string name="don">Дон</string>
+    <string name="sheriff">Комиссар</string>
+    <string name="yakudza">Якудза</string>
+    <string name="sensey">Сэнсэй</string>
+    <string name="killer">Маньяк</string>
+    <string name="doctor">Доктор</string>
+    <string name="reviver">Реаниматор</string>
+    <string name="lover">Любовница</string>
+    <string name="undying">Бессмертный</string>
+    <string name="prist">Священник</string>
+    <string name="journalist">Журналист</string>
+    <string name="civilian">Мирный житель</string>
+    <string name="lycanthrope">Оборотень</string>
+    <string name="count">Количество</string>
+    <string name="few_players">Для игры надо минимум 4 игрока</string>
+    <string name="wrong_number">Количество игроков не соответствует количеству ролей</string>
+    <string name="start_game">Начать игру</string>
+    <string name="shuffle_tittle">Раздача ролей</string>
+</resources>
