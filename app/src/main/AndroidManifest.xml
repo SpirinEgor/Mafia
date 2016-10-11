@@ -15,15 +15,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StartActivity"
-            android:label="@string/start_tittle">
-        </activity>
-        <activity android:name=".PlayersActivity"
-            android:label="@string/players_tittle">
-        </activity>
-        <activity android:name=".ShuffleActivity"
-            android:label="@string/shuffle_tittle">
-        </activity>
+        <activity
+            android:name=".StartActivity"
+            android:label="@string/start_tittle" />
+        <activity
+            android:name=".PlayersActivity"
+            android:label="@string/players_tittle" />
+        <activity
+            android:name=".ShuffleActivity"
+            android:label="@string/shuffle_tittle" />
+        <activity android:name=".Roles" />
+        <activity android:name=".Turn"></activity>
     </application>
 
 </manifest>

@@ -1,8 +1,11 @@
 package com.fiit.g131.mafia;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,7 +17,7 @@ import java.util.Vector;
 public class ShuffleActivity extends Activity{
 
     ListView lv;
-
+    Button start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,13 +25,14 @@ public class ShuffleActivity extends Activity{
 
         lv = (ListView) findViewById(R.id.lv);
 
-        ArrayList<String> names = getIntent().getStringArrayListExtra("names");
-        int[] role_c = getIntent().getIntArrayExtra("roles_c");
+        final ArrayList<String> names = getIntent().getStringArrayListExtra("names");
+        final int[] role_c = getIntent().getIntArrayExtra("roles_c");
         int rand;
-        String[] role_name = getIntent().getStringArrayExtra("roles_names");
+        start = (Button) findViewById(R.id.start_game);
+        final String[] role_name = getIntent().getStringArrayExtra("roles_names");
         Random r = new Random();
-        Map<String, Vector<String> > roles = new HashMap<String, Vector<String> >();
-        Vector <String> tmp_roles = new Vector<String>();
+        final ArrayList<ArrayList<String> > roles = new ArrayList<>();
+        ArrayList <String> tmp_roles = new ArrayList<>();
         Vector <String> for_adapter = new Vector<String>();
         String buf = new String();
         for (int j = 0; j < 14; j++) {
@@ -41,13 +45,34 @@ public class ShuffleActivity extends Activity{
                 if (i != (role_c[j] - 1)) buf += ", ";
                 names.remove(rand);
             }
-            roles.put(role_name[j], tmp_roles);
+
             tmp_roles.clear();
-            if (role_c[j] != 0) for_adapter.add(buf);
+            if (role_c[j] != 0) {
+                for_adapter.add(buf);
+                roles.add(tmp_roles);
+            }
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, for_adapter);
         lv.setAdapter(adapter);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShuffleActivity.this, Roles.class);
+                intent.putExtra("names", names);
+                intent.putExtra("roles_names", role_name);
+                intent.putExtra("roles_c", role_c);
+                String key;
+                key = "a";
+                for (int i = 0; i < roles.size(); i++) {
+                    intent.putExtra(key, roles.get(i));
+                    key += "a";
+                }
+                intent.putExtra("cur", 0);
+                intent.putExtra("kol", roles.size());
+                startActivity(intent);
+            }
+        });
     }
 
 }
