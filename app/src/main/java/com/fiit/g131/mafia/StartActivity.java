@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class StartActivity extends Activity {
@@ -68,9 +69,9 @@ public class StartActivity extends Activity {
                     toast.show();
                 }else{
                     Intent intent = new Intent(StartActivity.this, PlayersActivity.class);
-                    String[] names = new String[players.size()];
+                    final ArrayList<String> names = new ArrayList<String>();
                     for (int i=0; i<players.size(); ++i)
-                        names[i]=players.elementAt(i);
+                        names.add(players.elementAt(i));
                     intent.putExtra("names", names);
                     startActivity(intent);
                 }

@@ -17,11 +17,11 @@
     <string name="doctor">Доктор</string>
     <string name="reviver">Реаниматор</string>
     <string name="lover">Любовница</string>
-    <string name="undying">Бессмертный</string>
-    <string name="prist">Священник</string>
+    <string name="immortal">Бессмертный</string>
+    <string name="priest">Священник</string>
     <string name="journalist">Журналист</string>
     <string name="civilian">Мирный житель</string>
-    <string name="lycanthrope">Оборотень</string>
+    <string name="werewolf">Оборотень</string>
     <string name="count">Количество</string>
     <string name="few_players">Для игры надо минимум 4 игрока</string>
     <string name="wrong_number">Количество игроков не соответствует количеству ролей</string>
