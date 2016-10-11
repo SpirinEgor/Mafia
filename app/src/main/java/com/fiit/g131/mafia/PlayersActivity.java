@@ -45,20 +45,20 @@ public class PlayersActivity extends Activity{
         role_ind[11] = (EditText) findViewById(R.id.num_lover);
         role_ind[12] = (EditText) findViewById(R.id.num_immortal);
         role_ind[13] = (EditText) findViewById(R.id.num_civilian);
-        role_name[0] = "mafia";
-        role_name[1] = "don";
-        role_name[2] = "yakudza";
-        role_name[3] = "sensey";
-        role_name[4] = "killer";
-        role_name[5] = "werewolf";
-        role_name[6] = "sheriff";
-        role_name[7] = "doctor";
-        role_name[8] = "reviver";
-        role_name[9] = "journalist";
-        role_name[10] = "priest";
-        role_name[11] = "lover";
-        role_name[12] = "immortal";
-        role_name[13] = "civilian";
+        role_name[0] = getResources().getString(R.string.mafia);
+        role_name[1] = getResources().getString(R.string.don);
+        role_name[2] = getResources().getString(R.string.yakudza);
+        role_name[3] = getResources().getString(R.string.sensey);
+        role_name[4] = getResources().getString(R.string.killer);
+        role_name[5] = getResources().getString(R.string.werewolf);
+        role_name[6] = getResources().getString(R.string.sheriff);
+        role_name[7] = getResources().getString(R.string.doctor);
+        role_name[8] = getResources().getString(R.string.reviver);
+        role_name[9] = getResources().getString(R.string.journalist);
+        role_name[10] = getResources().getString(R.string.priest);
+        role_name[11] = getResources().getString(R.string.lover);
+        role_name[12] = getResources().getString(R.string.immortal);
+        role_name[13] = getResources().getString(R.string.civilian);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

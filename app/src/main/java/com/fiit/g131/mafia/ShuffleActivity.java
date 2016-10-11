@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.Vector;
 
@@ -35,15 +33,16 @@ public class ShuffleActivity extends Activity{
         ArrayList <String> tmp_roles = new ArrayList<>();
         Vector <String> for_adapter = new Vector<String>();
         String buf = new String();
+        ArrayList<String> tmp_names = names;
         for (int j = 0; j < 14; j++) {
             buf = role_name[j];
             buf += ": ";
             for (int i = 0; i < role_c[j]; ++i) {
-                rand = r.nextInt(names.size());
-                tmp_roles.add(names.get(rand));
-                buf += (names.get(rand));
+                rand = r.nextInt(tmp_names.size());
+                tmp_roles.add(tmp_names.get(rand));
+                buf += (tmp_names.get(rand));
                 if (i != (role_c[j] - 1)) buf += ", ";
-                names.remove(rand);
+                tmp_names.remove(rand);
             }
 
             tmp_roles.clear();
@@ -58,7 +57,7 @@ public class ShuffleActivity extends Activity{
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShuffleActivity.this, Roles.class);
+                Intent intent = new Intent(ShuffleActivity.this, RolesActivity.class);
                 intent.putExtra("names", names);
                 intent.putExtra("roles_names", role_name);
                 intent.putExtra("roles_c", role_c);

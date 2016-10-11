@@ -9,9 +9,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class Turn extends AppCompatActivity {
+public class TurnActivity extends AppCompatActivity {
 
     ListView lv;
+    ArrayList<ArrayList<String> > roles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,21 +21,29 @@ public class Turn extends AppCompatActivity {
         String buf = new String();
         String[] role_name = getIntent().getStringArrayExtra("roles_names");
         int[] role_c = getIntent().getIntArrayExtra("roles_c");
-        ArrayList<String> names = getIntent().getStringArrayListExtra("names");
-        ArrayList<ArrayList<String> > roles = getIntent().getParcelableExtra("roles");
         int kol = getIntent().getExtras().getInt("kol");
         int cur = getIntent().getExtras().getInt("cur");
+        ArrayList<String> names = getIntent().getStringArrayListExtra("names");
+        roles = new ArrayList<>();
+        String key = "a";
+        ArrayList<String> tmp;
+        for (int i = 0; i < kol; i++) {
+            tmp = getIntent().getStringArrayListExtra(key);
+            roles.add(tmp);
+            key += "a";
+        }
         Vector<String> for_adapter = new Vector<String>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, for_adapter);
         boolean fl;
         for (int i = 0; i < names.size(); i++) {
             fl = true;
-            for (int q = 0; q < roles.get(i).size(); q++) {
-                if (roles.get(i).get(q) == names.get(i)) {
+            for (int q = 0; q < roles.get(cur).size(); q++) {
+                if (roles.get(cur).get(q).equals(names.get(i))) {
                     fl = false;
                 }
             }
+            fl = true;
             if (fl) {
                 for_adapter.add(names.get(i));
             }

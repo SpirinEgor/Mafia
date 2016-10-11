@@ -5,11 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Roles extends AppCompatActivity {
+public class RolesActivity extends AppCompatActivity {
 
     Button cur_role;
     ArrayList<ArrayList<String>> roles;
@@ -25,7 +24,7 @@ public class Roles extends AppCompatActivity {
         final int kol = getIntent().getExtras().getInt("kol");
         final int cur = getIntent().getExtras().getInt("cur");
         cur_role = (Button) findViewById(R.id.cur_role);
-        final Intent intent = new Intent(Roles.this, Turn.class);
+        final Intent intent = new Intent(RolesActivity.this, TurnActivity.class);
         cur_role.setText(role_name[cur]);
         String key = "a";
         ArrayList<String> tmp;
@@ -47,6 +46,7 @@ public class Roles extends AppCompatActivity {
                 }
                 intent.putExtra("cur", cur);
                 intent.putExtra("kol", roles.size());
+                startActivity(intent);
             }
         });
     }
