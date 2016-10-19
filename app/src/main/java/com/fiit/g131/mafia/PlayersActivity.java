@@ -64,7 +64,12 @@ public class PlayersActivity extends Activity{
             public void onClick(View view) {
                 int sum = 0;
                 for (int i = 0; i < 14; i++) {
-                    role_c[i] = Integer.parseInt(role_ind[i].getText().toString());
+                    String role_count=role_ind[i].getText().toString();
+                    try{
+                        role_c[i] = Integer.parseInt(role_count);
+                    }catch (Exception e){
+                        role_c[i]=0;
+                    }
                     sum += role_c[i];
                 }
                 if (sum!=names.size()){
