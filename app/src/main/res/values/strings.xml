@@ -27,4 +27,8 @@
     <string name="wrong_number">Количество игроков не соответствует количеству ролей</string>
     <string name="start_game">Начать игру</string>
     <string name="shuffle_tittle">Раздача ролей</string>
+    <string name="start_turn">Начать ход</string>
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+    <string name="edit_menu">Меню редактирования</string>
 </resources>
