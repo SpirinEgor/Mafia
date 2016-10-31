@@ -1,14 +1,11 @@
 package com.fiit.g131.mafia;
 
-<<<<<<< HEAD
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-=======
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
->>>>>>> 96d2e95bca14d7bfbc55df8c4c0ad9e27b4f3596
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
@@ -56,7 +53,6 @@ public class TurnActivity extends AppCompatActivity {
             roles.add(h);
         }
 
-<<<<<<< HEAD
         for (int i = 0; i < 1; ++i){
             h.clear();
             h = roles.get(i);
@@ -85,7 +81,6 @@ public class TurnActivity extends AppCompatActivity {
             alertDialog.show();
         }
 
-=======
         for (int i=0; i<14;) {
             String cur_role = role_name[i];
             String cur_names = "";
@@ -103,7 +98,6 @@ public class TurnActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         }
->>>>>>> 96d2e95bca14d7bfbc55df8c4c0ad9e27b4f3596
     }
 
     @Override
