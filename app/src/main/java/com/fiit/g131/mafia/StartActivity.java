@@ -1,20 +1,33 @@
 package com.fiit.g131.mafia;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.app.AlertDialog;
+=======
+>>>>>>> 96d2e95bca14d7bfbc55df8c4c0ad9e27b4f3596
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.view.menu.ExpandedMenuView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+<<<<<<< HEAD
 import android.view.ViewGroup;
+=======
+>>>>>>> 96d2e95bca14d7bfbc55df8c4c0ad9e27b4f3596
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+<<<<<<< HEAD
 import android.widget.TextView;
+=======
+import android.widget.RelativeLayout;
+>>>>>>> 96d2e95bca14d7bfbc55df8c4c0ad9e27b4f3596
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -38,8 +51,14 @@ public class StartActivity extends Activity {
         lv_player = (ListView) findViewById(R.id.lv);
         next_btn = (Button) findViewById(R.id.start_next);
 
+<<<<<<< HEAD
         players = new Vector();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, players);
+=======
+        final Vector <String> players = new Vector();
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, players);
+>>>>>>> 96d2e95bca14d7bfbc55df8c4c0ad9e27b4f3596
         lv_player.setAdapter(adapter);
 
         add_btn.setOnClickListener(new View.OnClickListener() {
@@ -57,9 +76,15 @@ public class StartActivity extends Activity {
                         if (players.elementAt(i).equals(new_player)) b = false;
                     if (b) {
                         players.add(new_player);
+<<<<<<< HEAD
                         adapter.notifyDataSetChanged();
                     } else {
                         String samename = getResources().getString(R.string.same_name);
+=======
+                        adapter.notifyDataSetInvalidated();
+                    }else{
+                        String samename=getResources().getString(R.string.same_name);
+>>>>>>> 96d2e95bca14d7bfbc55df8c4c0ad9e27b4f3596
                         Toast toast = Toast.makeText(getApplicationContext(), samename, Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
@@ -91,6 +116,7 @@ public class StartActivity extends Activity {
         lv_player.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+<<<<<<< HEAD
                 String get = players.elementAt(i);
                 final int index = i;
                 LayoutInflater inflater = getLayoutInflater();
@@ -124,5 +150,30 @@ public class StartActivity extends Activity {
 
     @Override
     public void onBackPressed(){}
+=======
+                String edit = adapter.getItem(i);
+                AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
+                builder.setTitle(getResources().getString(R.string.edit_menu)).setCancelable(false).
+                        setNegativeButton(getResources().getString(R.string.edit), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }).setPositiveButton(getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                RelativeLayout rv = (RelativeLayout) getLayoutInflater().inflate(R.layout.dialog, null);
+                AlertDialog alert = builder.create();
+                alert.setView(rv);
+                EditText edt = (EditText) findViewById(R.id.edit);
+                edt.setText(edit);
+                alert.show();
+            }
+        });
+    }
+>>>>>>> 96d2e95bca14d7bfbc55df8c4c0ad9e27b4f3596
 
 }
