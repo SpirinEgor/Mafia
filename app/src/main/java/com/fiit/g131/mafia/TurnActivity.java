@@ -2,10 +2,6 @@ package com.fiit.g131.mafia;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
@@ -81,23 +77,6 @@ public class TurnActivity extends AppCompatActivity {
             alertDialog.show();
         }
 
-        for (int i=0; i<14;) {
-            String cur_role = role_name[i];
-            String cur_names = "";
-            for (String s: roles.get(i)){
-                cur_names+=s+" ";
-            }
-            AlertDialog.Builder builder = new AlertDialog.Builder(TurnActivity.this);
-            builder.setTitle(cur_role).setMessage(cur_names).setCancelable(false).
-                    setNegativeButton(getResources().getString(R.string.start_turn), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-        }
     }
 
     @Override

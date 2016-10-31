@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.view.menu.ExpandedMenuView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -44,10 +40,6 @@ public class StartActivity extends Activity {
 
         players = new Vector();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, players);
-
-        final Vector <String> players = new Vector();
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, players);
         lv_player.setAdapter(adapter);
 
         add_btn.setOnClickListener(new View.OnClickListener() {
@@ -68,9 +60,6 @@ public class StartActivity extends Activity {
                         adapter.notifyDataSetChanged();
                     } else {
                         String samename = getResources().getString(R.string.same_name);
-                        adapter.notifyDataSetInvalidated();
-                    }else{
-                        String samename=getResources().getString(R.string.same_name);
                         Toast toast = Toast.makeText(getApplicationContext(), samename, Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
@@ -135,27 +124,5 @@ public class StartActivity extends Activity {
 
     @Override
     public void onBackPressed(){}
-                String edit = adapter.getItem(i);
-                AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
-                builder.setTitle(getResources().getString(R.string.edit_menu)).setCancelable(false).
-                        setNegativeButton(getResources().getString(R.string.edit), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        }).setPositiveButton(getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-                RelativeLayout rv = (RelativeLayout) getLayoutInflater().inflate(R.layout.dialog, null);
-                AlertDialog alert = builder.create();
-                alert.setView(rv);
-                EditText edt = (EditText) findViewById(R.id.edit);
-                edt.setText(edit);
-                alert.show();
-            }
-        });
-    }
+
 }
