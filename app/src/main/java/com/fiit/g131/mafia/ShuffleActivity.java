@@ -84,4 +84,7 @@ public class ShuffleActivity extends Activity{
         });
     }
 
+    @Override
+    public void onBackPressed(){}
+
 }

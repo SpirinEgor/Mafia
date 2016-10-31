@@ -89,4 +89,7 @@ public class PlayersActivity extends Activity{
         });
     }
 
+    @Override
+    public void onBackPressed(){}
+
 }
