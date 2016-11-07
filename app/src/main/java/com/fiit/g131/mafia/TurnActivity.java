@@ -4,23 +4,54 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Vector;
 
 public class TurnActivity extends AppCompatActivity {
 
     ListView lv;
-    ArrayList<HashSet<String>> roles;
+    ArrayList<ArrayList<String>> roles;
     ArrayList<String> names, died;
     Vector<String> cur_names;
-    int cur;
+    int cur_role = 0, prev_cur_role;
     String[] role_name;
     ArrayAdapter<String> adapter;
+
+    void nextturn(){
+        String msg = "";
+        for (String tmps: roles.get(cur_role)){
+            msg += tmps;
+            msg += '\n';
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(TurnActivity.this);
+        builder.setTitle(role_name[cur_role]);
+        builder.setMessage(msg);
+        builder.setPositiveButton(getResources().getString(R.string.start_move), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                cur_names.clear();
+                for (int j = 0; j < 14; ++j){
+                    if (j == cur_role) continue;
+                    for (String tmps: roles.get(j)){
+                        cur_names.add(tmps);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+                prev_cur_role = cur_role;
+                ++cur_role;
+                if (cur_role == 14) cur_role = 0;
+                for(; roles.get(cur_role).size() == 0 && cur_role < 14; ++cur_role);
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,70 +62,31 @@ public class TurnActivity extends AppCompatActivity {
 
         role_name = getIntent().getStringArrayExtra("roles_names");
         names = getIntent().getStringArrayListExtra("names");
-        cur = getIntent().getExtras().getInt("cur");
 
         roles = new ArrayList<>();
-        ArrayList<String> tmp = new ArrayList<>();
-        HashSet<String> h = new HashSet<>();
         cur_names = new Vector<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cur_names);
+        lv.setAdapter(adapter);
 
         for (int i = 0; i < 14; i++) {
-            tmp.clear();
-            h.clear();
-            tmp = getIntent().getStringArrayListExtra(role_name[i]);
-            for (int q = 0; q < tmp.size(); q++) {
-                h.add(tmp.get(q));
-            }
-            roles.add(h);
+            roles.add(getIntent().getStringArrayListExtra(role_name[i]));
         }
 
-        for (int i = 0; i < 1; ++i){
-            h.clear();
-            h = roles.get(i);
-            final int cur_role = i;
-            cur_names.clear();
-            if (h.size() == 0) continue;
-            AlertDialog.Builder builder = new AlertDialog.Builder(TurnActivity.this);
-            builder.setTitle(role_name[i]);
-            String cur_players = "";
-            Iterator<String> it = h.iterator();
-            for(; it.hasNext();){
-                cur_players += it.next().toString() + "\n";
-            }
-            builder.setMessage(cur_players);
-            builder.setPositiveButton(getResources().getString(R.string.start_move), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    for (int j = 0; j < names.size(); ++j)
-                        cur_names.add(names.get(j));
-                    do_the_role(cur_role);
-                    adapter.notifyDataSetChanged();
-                    dialogInterface.cancel();
+        nextturn();
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (prev_cur_role == 0 || prev_cur_role == 2 || prev_cur_role == 4){
+                    died.add(cur_names.get(i));
                 }
-            });
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-        }
+                nextturn();
+            }
+        });
 
     }
 
     @Override
-    public void onBackPressed(){}
-
-    void do_the_role(int i){
-        HashSet<String> h = new HashSet<>();
-        h = roles.get(i);
-        String[] tmp = {};
-        tmp = h.toArray(new String[h.size()]);
-        switch (i){
-            case 0:
-                for (int j = 0; j < tmp.length; ++j){
-                    for (int k = 0; k < cur_names.size(); ++k){
-                        if (cur_names.get(k).equals(tmp[j])) cur_names.remove(k);
-                    }
-                }
-        }
+    public void onBackPressed() {
     }
 
 }
