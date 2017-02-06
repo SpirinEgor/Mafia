@@ -34,4 +34,5 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="start_move">Начать ход</string>
+    <string name="vote">Голосование</string>
 </resources>

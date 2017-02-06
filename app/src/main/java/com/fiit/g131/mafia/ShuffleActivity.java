@@ -32,7 +32,7 @@ public class ShuffleActivity extends Activity{
         start = (Button) findViewById(R.id.start_game);
 
         names = getIntent().getStringArrayListExtra("names");
-        role_c = getIntent().getIntArrayExtra("roles_c");
+        role_c = getIntent().getIntArrayExtra("roles_c");  //колличество игроков роли i
         role_name = getIntent().getStringArrayExtra("roles_names");
 
         int rand;
@@ -46,7 +46,7 @@ public class ShuffleActivity extends Activity{
             tmp_names.add(names.get(i));
 
         String buf = new String();
-        for (int j = 0; j < 14; j++) {
+        for (int j = 0; j < 14; j++) {  //рандом ролей
             ArrayList <String> tmp_roles = new ArrayList<>();
             if (role_c[j] == 0) {
                 roles.add(tmp_roles);
@@ -62,7 +62,7 @@ public class ShuffleActivity extends Activity{
                 tmp_names.remove(rand);
             }
             for_adapter.add(buf);
-            roles.add(tmp_roles);
+            roles.add(tmp_roles);  //roles[i] содержит список игроков i роли
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
