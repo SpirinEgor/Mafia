@@ -35,4 +35,16 @@
     <string name="no">Нет</string>
     <string name="start_move">Начать ход</string>
     <string name="vote">Голосование</string>
+    <string name="killed">Убиты:</string>
+    <string name="non_killed">Никто не убит</string>
+    <string name="silent">Молчат:</string>
+    <string name="non_silent">Никто не молчит</string>
+    <string name="miss">Пропуск</string>
+    <string name="guess_sheriff">Красный - комиссар, черный - не комиссар</string>
+    <string name="guess_black">Красный - мирный игрок, черный - игрок из клана убийц</string>
+    <string name="doctor_repied">Доктор уже лечил сам себя</string>
+    <string name="doctor_wrong">Нельзя лечить 2 ночи подряд одного человека</string>
+    <string name="wake_up">Разбудите:</string>
+    <string name="lover_repied">Любовница уже любила сама себя</string>
+    <string name="lover_wrong">Нельзя любить 2 ночи подряд одного человека</string>
 </resources>
