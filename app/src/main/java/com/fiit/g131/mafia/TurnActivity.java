@@ -2,6 +2,7 @@ package com.fiit.g131.mafia;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -136,6 +137,33 @@ public class TurnActivity extends AppCompatActivity {
         alertDialog.show();
     }  //ход роли, создание списка, AlertDialog
 
+    void check_end_game(){
+        int black = 0, red = 0;
+        for (int i = 0; i < 14; ++i){
+            for (String tmps: roles.get(i)){
+                if (i < 5) ++black;
+                else if (i == 5){
+                    if (roles.get(4).size() == 0) ++black;
+                    else ++red;
+                }
+                else ++red;
+            }
+        }
+        if (red == 0){
+            Intent intent = new Intent(TurnActivity.this, EndActivity.class);
+            intent.putExtra("win", 1); //победа черных
+            intent.putStringArrayListExtra("names", names);
+            startActivity(intent);
+        }
+        else if (black == 0){
+            Intent intent = new Intent(TurnActivity.this, EndActivity.class);
+            intent.putExtra("win", 0); //победа красных
+            intent.putStringArrayListExtra("names", names);
+            startActivity(intent);
+        }
+
+    }  //проверка на конец игры
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,7 +195,9 @@ public class TurnActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (prev_cur_role == 0 || prev_cur_role == 2 || prev_cur_role == 4 || prev_cur_role == 5) { //ход Мафии, Якудзы, Киллера и Оборотня
                     if (i < cur_names.size() - 1){
-                        died.add(cur_names.get(i));
+                        if (!roles.get(12).contains(cur_names.get((i)))) { //не убили ли бессмертного
+                            died.add(cur_names.get(i));
+                        }
                     }
                 }
                 else if (prev_cur_role == 1 || prev_cur_role == 3){  //Ход Дона и Сенсея
@@ -285,9 +315,7 @@ public class TurnActivity extends AppCompatActivity {
                     if (i < cur_names.size() - 1){
                         if (cur_names.get(i) != roles.get(11).get(0)){
                             if (last_lover != cur_names.get(i)) {
-                                if (died.contains(cur_names.get(i))) {
-                                    died.remove(cur_names.get(i));
-                                }
+                                silent = cur_names.get(i);
                                 last_lover = cur_names.get(i);
                             }else{
                                 Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.lover_wrong), Toast.LENGTH_SHORT);
@@ -298,9 +326,7 @@ public class TurnActivity extends AppCompatActivity {
                         }else{
                             if (!lov) {
                                 lov = true;
-                                if (died.contains(cur_names.get(i))) {
-                                    died.remove(cur_names.get(i));
-                                }
+                                silent = cur_names.get(i);
                                 last_lover = cur_names.get(i);
                             } else {
                                 Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.lover_repied), Toast.LENGTH_SHORT);
@@ -328,7 +354,9 @@ public class TurnActivity extends AppCompatActivity {
                         ++cur_role;
                     }
                     died.clear();
+                    silent = "";
                 }
+                check_end_game();
                 nextturn();
             }
         });

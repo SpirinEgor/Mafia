@@ -24,7 +24,12 @@
         <activity
             android:name=".ShuffleActivity"
             android:label="@string/shuffle_tittle" />
-        <activity android:name=".TurnActivity" />
+        <activity
+            android:name=".TurnActivity"
+            android:label="@string/turn_tittle"/>
+        <activity
+            android:name=".EndActivity"
+            android:label="@string/end_tittle"/>
     </application>
 
 </manifest>

@@ -7,8 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    String VERSION = "alpha 1.0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +21,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button new_game = (Button) findViewById(R.id.newgame);
+        TextView version = (TextView) findViewById(R.id.version);
+        version.setText(VERSION);
 
         new_game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, StartActivity.class);
+                ArrayList<String> names = new ArrayList<String>();
+                intent.putStringArrayListExtra("names", names);
                 startActivity(intent);
             }
         });

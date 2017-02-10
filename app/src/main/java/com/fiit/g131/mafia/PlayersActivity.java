@@ -21,6 +21,7 @@ public class PlayersActivity extends Activity{
     ArrayList<String> names = new ArrayList<>();
     EditText[] role_ind = new EditText[14];
     int[] role_c = new int[14];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,24 @@ public class PlayersActivity extends Activity{
                         role_c[i] = Integer.parseInt(role_count);
                     }catch (Exception e){
                         role_c[i]=0;
+                    }
+                    if (i != 0 && i != 2 && i != 13){  //корректный сет ап
+                        if (i != 9){
+                            if (role_c[i] > 1){
+                                Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.too_much_for_role), Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                                role_c[i] = 0;
+                            }
+                        }
+                        else{
+                            if (role_c[i] > 0){
+                                Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.journalist_fail), Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                                role_c[i] = 0;
+                            }
+                        }
                     }
                     sum += role_c[i];
                 }

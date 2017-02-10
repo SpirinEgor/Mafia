@@ -26,6 +26,7 @@ public class StartActivity extends Activity {
     EditText add_edt, edit;
     Button add_btn, next_btn;
     Vector<String> players;
+    ArrayList<String> names; //предподготовленный список игроков, в случае новой игры - пустой
     ArrayAdapter<String> adapter;
 
     @Override
@@ -38,7 +39,11 @@ public class StartActivity extends Activity {
         lv_player = (ListView) findViewById(R.id.lv);
         next_btn = (Button) findViewById(R.id.start_next);
 
+        names = getIntent().getStringArrayListExtra("names");
         players = new Vector();
+        for (String tmps: names){
+            players.add(tmps);
+        }
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, players);
         lv_player.setAdapter(adapter);
 

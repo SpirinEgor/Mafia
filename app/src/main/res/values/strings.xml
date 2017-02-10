@@ -47,4 +47,12 @@
     <string name="wake_up">Разбудите:</string>
     <string name="lover_repied">Любовница уже любила сама себя</string>
     <string name="lover_wrong">Нельзя любить 2 ночи подряд одного человека</string>
+    <string name="back_to_menu">Вернуться в меню</string>
+    <string name="repied_game">Новая игра тем же составом</string>
+    <string name="turn_tittle">Игровой процесс</string>
+    <string name="end_tittle">Конец игры</string>
+    <string name="red_win">Победа мирных жителей</string>
+    <string name="black_win">Победа кланов убийц</string>
+    <string name="too_much_for_role">Для корректной игры необходим 1 человек этой роли</string>
+    <string name="journalist_fail">Журналист находится в разработке</string>
 </resources>
